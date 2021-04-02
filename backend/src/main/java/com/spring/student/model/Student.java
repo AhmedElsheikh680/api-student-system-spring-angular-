@@ -1,26 +1,43 @@
 package com.spring.student.model;
 
 import com.spring.student.model.enums.Gender;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "student")
 public class Student {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
+    @Column(name = "full_name")
     private String fullName;
 
+    @Column(name = "gender")
     private Gender gender;
 
+    @Column(name = "phone_number")
     private String phone;
 
+    @Column(name = "age")
     private String age;
 
+    @Column(name = "address")
     private String address;
 
-    private Date dataCreated;
+    @CreationTimestamp
+    @Column(name = "date_created")
+    private Date dateCreated;
 
-    private String dataUpdated;
+    @UpdateTimestamp
+    @Column(name = "date_updated")
+    private Date dateUpdated;
 
 
 }
