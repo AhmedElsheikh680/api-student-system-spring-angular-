@@ -1,16 +1,17 @@
 package com.spring.student.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.spring.student.model.enums.Gender;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "student")
 public class Student {
@@ -37,10 +38,12 @@ public class Student {
     private String address;
 
     @CreationTimestamp
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "date_created")
     private Date dateCreated;
 
     @UpdateTimestamp
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "date_updated")
     private Date dateUpdated;
 
