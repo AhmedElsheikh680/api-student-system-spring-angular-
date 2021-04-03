@@ -12,7 +12,9 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'control', component: ActionComponent },
-  { path: 'students', component: StudentsComponent }
+  { path: 'students', component: StudentsComponent },
+  { path: '', component: StudentsComponent },
+  { path: '**', component: StudentsComponent}
 ];
 @NgModule({
   declarations: [
