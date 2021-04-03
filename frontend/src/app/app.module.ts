@@ -8,6 +8,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { StudentsComponent } from './components/students/students.component';
 import { ActionComponent } from './components/action/action.component';
 import { RouterModule, Routes } from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,13 +13,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
+  <tr *ngFor="let temStudent of students">
 <!--    <th scope="row">1</th>-->
-    <td>Mohamed Ahmed</td>
-    <td>01113903660</td>
-    <td>MALE</td>
-    <td>20</td>
-    <td>Shibeen</td>
+    <td>{{ temStudent.fullName }}</td>
+    <td>{{ temStudent.phone }}</td>
+    <td>{{temStudent.gender }}</td>
+    <td>{{ temStudent.age }}</td>
+    <td>{{ temStudent.address }}</td>
     <td>
       <button class="btn btn-success" routerLink="/control">Update</button>
       <button class="btn btn-danger">Delete</button>
