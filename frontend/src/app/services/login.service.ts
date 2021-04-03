@@ -16,7 +16,7 @@ export class LoginService {
   }
 
   isLogin(){
-    !(sessionStorage.getItem('isRegister') == null);
+    return !(sessionStorage.getItem('isRegister') == null);
   }
 
   logout(){
