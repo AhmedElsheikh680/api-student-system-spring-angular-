@@ -38,12 +38,12 @@ public class Student {
     private String address;
 
     @CreationTimestamp
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "date_created")
     private Date dateCreated;
 
     @UpdateTimestamp
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     @Column(name = "date_updated")
     private Date dateUpdated;
 
