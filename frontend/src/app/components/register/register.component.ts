@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {LoginService} from '../../services/login.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class RegisterComponent implements OnInit {
 
   loginFormGroup: FormGroup
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -21,7 +23,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginFormGroup.get('admin').value.userName);
-    console.log(this.loginFormGroup.get('admin').value.password);
+    // console.log(this.loginFormGroup.get('admin').value.userName);
+    // console.log(this.loginFormGroup.get('admin').value.password);
+    this.loginService.login(this.loginFormGroup.get('admin').value.userName,
+                            this.loginFormGroup.get('admin').value.password);
   }
 }

@@ -17,8 +17,8 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div class="control">
-        <button class="btn btn-outline-success" routerLink="register" type="submit">Login</button>
-        <button class="btn btn-outline-danger" type="submit" *ngIf="isAuthenticatedUser()">Logout</button>
+        <button *ngIf="!isAuthenticatedUser()" class="btn btn-outline-success" routerLink="register" type="submit" >Login</button>
+        <button *ngIf="isAuthenticatedUser()" (click)="logout()" class="btn btn-outline-danger" type="submit">Logout</button>
       </div>
     </div>
   </div>
