@@ -1,0 +1,12 @@
+.me-auto {
+  margin-right: 133px!important;
+}
+.control{
+  position: absolute;
+  right: 40px;
+}
+.control button,
+.search button{
+  margin-left: 5px;
+  color: #fff;
+}
