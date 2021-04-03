@@ -7,17 +7,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="students">Home</a>
+          <a class="nav-link active" aria-current="page"
+             routerLink="students" *ngIf="isAuthenticatedUser()">Home</a>
         </li>
 
       </ul>
-      <form class="d-flex search">
+      <form class="d-flex search" *ngIf="isAuthenticatedUser()">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div class="control">
         <button class="btn btn-outline-success" routerLink="register" type="submit">Login</button>
-        <button class="btn btn-outline-danger" type="submit">Logout</button>
+        <button class="btn btn-outline-danger" type="submit" *ngIf="isAuthenticatedUser()">Logout</button>
       </div>
     </div>
   </div>
