@@ -7,7 +7,13 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './components/register/register.component';
 import { StudentsComponent } from './components/students/students.component';
 import { ActionComponent } from './components/action/action.component';
+import { RouterModule, Routes } from '@angular/router';
 
+const routes: Routes = [
+  { path: 'register', component: RegisterComponent },
+  { path: 'control', component: ActionComponent },
+  { path: 'students', component: StudentsComponent }
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +24,8 @@ import { ActionComponent } from './components/action/action.component';
     ActionComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
