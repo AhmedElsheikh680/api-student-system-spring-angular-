@@ -47,4 +47,10 @@ public class StudentController {
         student.setId(id);
         return studentService.updateStudent(student);
     }
+
+    //http://localhost:8080/api/v1/students?id=1
+    @DeleteMapping("/students")
+    public void deleteStudent(@RequestParam Long id){
+        studentService.deleteStudent(id);
+    }
 }
