@@ -1,4 +1,4 @@
-
+<div class="alert alert-warning" *ngIf="message"> {{ message }}</div>
 <table class="table table-striped table-dark">
   <thead>
   <tr>
@@ -23,7 +23,7 @@
     <td>{{ temStudent.address }}</td>
     <td>
       <button class="btn btn-success" routerLink="/control">Update</button>
-      <button class="btn btn-danger">Delete</button>
+      <button class="btn btn-danger" (click)="deleteStudent(temStudent.id)">Delete</button>
     </td>
   </tr>
   </tbody>

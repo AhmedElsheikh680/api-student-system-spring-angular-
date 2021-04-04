@@ -10,7 +10,7 @@ import {StudentService} from '../../services/student.service';
 export class StudentsComponent implements OnInit {
 
   students: Student[];
-
+  message:string;
   constructor(private studentService: StudentService) { }
 
   ngOnInit(): void {
@@ -22,5 +22,33 @@ export class StudentsComponent implements OnInit {
       data => this.students = data
     )
   }
+
+deleteStudent(id: number){
+    this.studentService.deleteStudent(id).subscribe(
+      response => {
+        this.getStudents(),
+          this.message=`Deleted Successfully ID `+id
+      }
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

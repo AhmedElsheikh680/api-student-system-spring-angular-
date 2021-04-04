@@ -28,6 +28,11 @@ export class StudentService {
   //     )
   //   )
   // }
+
+  deleteStudent(id: number){
+    //this.httpClient.delete(this.urlStudents + `?id=`+id);
+    return this.httpClient.delete(this.urlStudents+ `?id=${id}`);
+  }
 }
 
 // interface GetResponseStudent {
