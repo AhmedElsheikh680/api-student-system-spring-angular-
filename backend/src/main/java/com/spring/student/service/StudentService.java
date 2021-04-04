@@ -24,4 +24,8 @@ public class StudentService {
     public Student addStudent(Student student){
         return studentRepo.save(student);
     }
+
+    public Student updateStudent(Student student){
+        return studentRepo.save(student);
+    }
 }

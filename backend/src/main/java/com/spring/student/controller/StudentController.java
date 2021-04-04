@@ -34,4 +34,17 @@ public class StudentController {
     public Student addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
+
+//    //http://localhost:8080/api/v1/students
+//    @PutMapping("/students")
+//    public Student updateStudent(@RequestBody Student student){
+//        return studentService.updateStudent(student);
+//    }
+
+    //http://localhost:8080/api/v1/students?id=1
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student student, @RequestParam Long id){
+        student.setId(id);
+        return studentService.updateStudent(student);
+    }
 }
