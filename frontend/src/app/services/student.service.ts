@@ -9,21 +9,29 @@ import {map} from 'rxjs/operators';
 })
 export class StudentService {
 
-  private urlStudents = `http://localhost:8080/api/students`;
+  private urlStudents = `http://localhost:8080/api/v1/students`;
 
   constructor(private httpClient: HttpClient) { }
 
-  getStudents(): Observable<Student[]>{
-    return this.httpClient.get<GetResponseStudent>(this.urlStudents).pipe(
-      map(
-        response => response._embedded.students
+    getStudents(): Observable<Student[]>{
+      return this.httpClient.get<Student[]>(this.urlStudents).pipe(
+        map(
+          response => response
+        )
       )
-    )
-  }
+    }
+
+  // getStudents(): Observable<Student[]>{
+  //   return this.httpClient.get<GetResponseStudent>(this.urlStudents).pipe(
+  //     map(
+  //       response => response._embedded.students
+  //     )
+  //   )
+  // }
 }
 
-interface GetResponseStudent {
-  _embedded: {
-    students: Student[]
-  }
-}
+// interface GetResponseStudent {
+//   _embedded: {
+//     students: Student[]
+//   }
+// }
