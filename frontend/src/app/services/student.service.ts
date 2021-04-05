@@ -4,6 +4,7 @@ import {Student} from '../model/student';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,12 +47,15 @@ export class StudentService {
     )
   }
 
+  // updateStudent(student: Student, id: number){
+  //   return this.httpClient.put(`http://localhost:8080/api/v1/students?id=${id}`, Student);
+  //
+  // }
 
 
-
-
-
-
+  editStudent(student: Student,id: number){
+    return this.httpClient.put(this.urlStudents + `?id=${id}` , student);
+  }
 
 
 

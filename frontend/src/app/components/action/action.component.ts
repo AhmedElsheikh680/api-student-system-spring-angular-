@@ -57,13 +57,21 @@ export class ActionComponent implements OnInit {
     // console.log(`Address `+this.getAddress());
     // console.log(`Phone `+this.getPhone());
     // console.log(`Gender `+this.getGender());
-    const student = new Student(-1, this.getFullName(), this.getGender(), this.getAge(),this.getPhone(),this.getGender());
-    this.studentService.addStudent(student).subscribe(
-      response =>{
-        // alert(`Added Successfully`)
-        this.router.navigateByUrl('/students')
+    const stu = new Student(this.id, this.getFullName(), this.getGender(), this.getAge(),this.getPhone(),this.getAddress());
+    if(this.id == 0){ //Save
+      this.studentService.addStudent(stu).subscribe(
+        response => {
+          this.router.navigateByUrl('/students')
+        }
+      )
+    }else { // Update
+      console.log('updated' +this.getFullName());
+      this.studentService.editStudent(stu,this.id).subscribe(
+        response => {
+          this.router.navigateByUrl('/students');
+        }
+      )
+    }
 
-      }
-    )
   }
 }
