@@ -23,7 +23,27 @@ export class ActionComponent implements OnInit {
     })
   }
 
-  save() {
+  getFullName(){
+    return this.studentGroup.get('student').value.fullName;
+  }
+  getAge(){
+    return this.studentGroup.get('student').value.age;
+  }
+  getAddress(){
+    return this.studentGroup.get('student').value.address;
+  }
+  getPhone(){
+    return this.studentGroup.get('student').value.phone;
+  }
+  getGender(){
+    return this.studentGroup.get('student').value.gender;
+  }
 
+  save() {
+    console.log(`FullName: `+this.getFullName());
+    console.log(`Age `+this.getAge());
+    console.log(`Address `+this.getAddress());
+    console.log(`Phone `+this.getPhone());
+    console.log(`Gender `+this.getGender());
   }
 }
