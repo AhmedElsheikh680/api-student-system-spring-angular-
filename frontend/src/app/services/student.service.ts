@@ -33,6 +33,21 @@ export class StudentService {
     //this.httpClient.delete(this.urlStudents + `?id=`+id);
     return this.httpClient.delete(this.urlStudents+ `?id=${id}`);
   }
+
+  addStudent(student: Student){
+    return this.httpClient.post(this.urlStudents, student);
+  }
+
+
+
+
+
+
+
+
+
+
+
 }
 
 // interface GetResponseStudent {
