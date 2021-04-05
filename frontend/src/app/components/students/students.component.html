@@ -22,7 +22,7 @@
     <td>{{ temStudent.age }}</td>
     <td>{{ temStudent.address }}</td>
     <td>
-      <button class="btn btn-success" routerLink="/control">Update</button>
+      <button class="btn btn-success" routerLink="/control/{{temStudent.id}}">Update</button>
       <button class="btn btn-danger" (click)="deleteStudent(temStudent.id)">Delete</button>
     </td>
   </tr>

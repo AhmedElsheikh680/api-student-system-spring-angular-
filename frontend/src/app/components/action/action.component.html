@@ -3,33 +3,33 @@
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="fullName"  type="text" class="form-control" placeholder="Full Name"
+      <input [value]="student.fullName"  formControlName="fullName"  type="text" class="form-control" placeholder="Full Name"
               aria-label="Username" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="age" type="text" class="form-control" placeholder="Age"
+      <input [value]="student.age"  formControlName="age" type="text" class="form-control" placeholder="Age"
              aria-label="Password" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="address" type="text" class="form-control" placeholder="Address"
+      <input [value]="student.address"  formControlName="address" type="text" class="form-control" placeholder="Address"
              aria-label="Password" aria-describedby="addon-wrapping">
     </div>
 
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
       </div>
-      <input formControlName="phone" type="text" class="form-control" placeholder="Phone"
+      <input [value]="student.phone"  formControlName="phone" type="text" class="form-control" placeholder="Phone"
              aria-label="Gender" aria-describedby="addon-wrapping">
     </div>
 
 
-    <select formControlName="gender" class="form-select" aria-label="Default select example">
+    <select [value]="student.gender" formControlName="gender" class="form-select" aria-label="Default select example">
       <option value="MALE">MALE</option>
       <option value="FEMALE">FEMALE</option>
     </select>

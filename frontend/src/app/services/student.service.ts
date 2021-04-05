@@ -38,6 +38,13 @@ export class StudentService {
     return this.httpClient.post(this.urlStudents, student);
   }
 
+  getStudentByid(id: number):Observable<Student>{
+    return this.httpClient.get<Student>(`http://localhost:8080/api/v1/student?id=${id}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
 
 
 
