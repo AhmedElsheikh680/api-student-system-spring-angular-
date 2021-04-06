@@ -7,13 +7,14 @@
       </div>
       <input  formControlName="userName" type="text" class="form-control"
               placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-      <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
-        <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">
-          User Name Is Required
-        </div>
-        <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
-          User Name Must Be At Least 5 Digits
-        </div>
+
+    </div>
+    <div class="invalid" *ngIf="userName.invalid && (userName.touched || userName.dirty)">
+      <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">
+        User Name Is Required
+      </div>
+      <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
+        User Name Must Be At Least 5 Digits
       </div>
     </div>
 
@@ -21,10 +22,11 @@
       <div class="input-group-prepend">
       </div>
       <input formControlName="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
-      <div *ngIf="password.invalid && (password.touched || password.dirty)">
-        <div *ngIf="password.errors.required" class="alert alert-danger">Password Is required</div>
-        <div *ngIf="password.errors.minlength" class="alert alert-danger">Password Must Be At Least 5 Digits</div>
-      </div>
+
+    </div>
+    <div class="invalid" *ngIf="password.invalid && (password.touched || password.dirty)">
+      <div *ngIf="password.errors.required" class="alert alert-danger">Password Is required</div>
+      <div *ngIf="password.errors.minlength" class="alert alert-danger">Password Must Be At Least 5 Digits</div>
     </div>
   </div>
 
