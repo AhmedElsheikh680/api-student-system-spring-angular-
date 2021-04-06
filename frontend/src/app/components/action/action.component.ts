@@ -41,7 +41,8 @@ export class ActionComponent implements OnInit {
                           SpaceValidator.noOnlyWithSpace]),
         address: new FormControl('', [Validators.required,SpaceValidator.noOnlyWithSpace]),
         phone: new FormControl('', [Validators.required,
-          Validators.maxLength(11), Validators.pattern("^[0-9]*$"),SpaceValidator.noOnlyWithSpace]),
+          Validators.maxLength(11),Validators.minLength(11),
+          Validators.pattern("^[0-9]*$"),SpaceValidator.noOnlyWithSpace]),
         gender: ['MALE']
       })
     })
@@ -79,33 +80,37 @@ export class ActionComponent implements OnInit {
   }
 
   save() {
+      if(this.studentGroup.invalid){
+        this.studentGroup.markAllAsTouched();
+      }else {
+        // alert(this.getFullName());
+        // alert(this.getAge());
+        // console.log(`FullName: `+this.getFullName());
+        // console.log(`Age `+this.getAge());
+        // console.log(`Address `+this.getAddress());
+        // console.log(`Phone `+this.getPhone());
+        // console.log(`Gender `+this.getGender());
+        const stu = new Student(this.id, this.getFullName(), this.getGender(), this.getAge(), this.getPhone(), this.getAddress());
+        if (this.id == 0) { //Save
+          this.studentService.addStudent(stu).subscribe(
+            response => {
+              this.router.navigateByUrl('students')
+            }, error => {
+              this.invalidFullName = 'Full Name Aleardy Exist',
+                this.showMessage()
+            }
+          )
+        } else { // Update
+          console.log('updated ' + this.id);
+          this.studentService.editStudent(stu, this.id).subscribe(
+            response => {
+              this.router.navigateByUrl('students')
+            }
+          )
+        }
 
-
-      // alert(this.getFullName());
-      // alert(this.getAge());
-      // console.log(`FullName: `+this.getFullName());
-      // console.log(`Age `+this.getAge());
-      // console.log(`Address `+this.getAddress());
-      // console.log(`Phone `+this.getPhone());
-      // console.log(`Gender `+this.getGender());
-      const stu = new Student(this.id, this.getFullName(), this.getGender(), this.getAge(), this.getPhone(), this.getAddress());
-      if (this.id == 0) { //Save
-        this.studentService.addStudent(stu).subscribe(
-          response => {
-            this.router.navigateByUrl('students')
-          }, error => {
-            this.invalidFullName = 'Full Name Aleardy Exist',
-              this.showMessage()
-          }
-        )
-      } else { // Update
-        console.log('updated ' + this.id);
-        this.studentService.editStudent(stu, this.id).subscribe(
-          response => {
-            this.router.navigateByUrl('students')
-          }
-        )
       }
+
 
 
   }

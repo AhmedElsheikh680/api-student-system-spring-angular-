@@ -56,8 +56,8 @@
       <div *ngIf="phone.errors.required || phone.errors.noOnlyWithSpace" class="alert alert-danger">
         Phone Is Required
       </div>
-      <div *ngIf="!phone.errors.noOnlyWithSpace && phone.errors.maxlength" class="alert alert-danger">
-        Phone Can\'t Be More Than 11 Digits
+      <div *ngIf="!phone.errors.noOnlyWithSpace && (phone.errors.maxlength || phone.errors.minlength)" class="alert alert-danger">
+        Phone Must Be 11 Digits
       </div>
       <div *ngIf="phone.errors.pattern" class="alert alert-danger">
         Phone Must Include Only Number
