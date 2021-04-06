@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Student} from '../../model/student';
 import {StudentService} from '../../services/student.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-students',
@@ -11,12 +12,23 @@ export class StudentsComponent implements OnInit {
 
   students: Student[];
   message:string;
-  constructor(private studentService: StudentService) { }
+  constructor(private studentService: StudentService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getStudents()
-  }
+    const resultName = this.route.snapshot.paramMap.has("name");
+    if(resultName == true){
+      const name = this.route.snapshot.paramMap.get("name");
+      this.getStudentByName(name);
+    }else{
+      this.getStudents()
 
+    }
+  }
+  getStudentByName(name:string){
+    this.studentService.getStudentByName(name).subscribe(
+      data =>this.students = data
+    )
+  }
   getStudents(){
     this.studentService.getStudents().subscribe(
       data => this.students = data

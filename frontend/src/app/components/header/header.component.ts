@@ -21,4 +21,9 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
     this.route.navigateByUrl('register');
   }
+
+  search(name: string) {
+    this.route.navigateByUrl(`students/${name}`);
+
+  }
 }

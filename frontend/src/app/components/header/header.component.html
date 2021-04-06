@@ -13,8 +13,8 @@
 
       </ul>
       <form class="d-flex search" *ngIf="isAuthenticatedUser()">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input #name class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button (click)="search(name.value)" class="btn btn-outline-success" type="submit">Search</button>
       </form>
       <div class="control">
         <button *ngIf="!isAuthenticatedUser()" class="btn btn-outline-success"
