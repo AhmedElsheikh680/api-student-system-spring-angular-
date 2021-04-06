@@ -14,6 +14,7 @@ export class ActionComponent implements OnInit {
   studentGroup: FormGroup;
   id:number;
   student:Student = new Student(0, "","","","","");
+  invalidFullName:string;
   constructor(private formBuilder: FormBuilder, private studentService: StudentService,
                 private router: Router, private route:ActivatedRoute) { }
 
@@ -68,6 +69,9 @@ export class ActionComponent implements OnInit {
       this.studentService.addStudent(stu).subscribe(
         response => {
           this.router.navigateByUrl('students')
+        },error => {
+          this.invalidFullName='Full Name Aleardy Exist',
+            this.showMessage()
         }
       )
     }else { // Update
@@ -79,5 +83,11 @@ export class ActionComponent implements OnInit {
       )
     }
 
+  }
+
+  showMessage(){
+    setTimeout( () => {
+      this.invalidFullName=""
+    },3000)
   }
 }
