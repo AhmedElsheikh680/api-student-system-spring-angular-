@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Student} from '../model/student';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -54,7 +54,7 @@ export class StudentService {
 
 
   editStudent(student: Student,id: number){
-    return this.httpClient.put(this.urlStudents + `?id=${id}` , student);
+    return this.httpClient.put(this.urlStudents + `?id=${id}` ,student);
   }
 
 

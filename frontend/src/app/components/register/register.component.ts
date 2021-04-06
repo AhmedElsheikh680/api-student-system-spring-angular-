@@ -11,9 +11,10 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   loginFormGroup: FormGroup
+  invalidMessage:string;
   constructor(private formBuilder: FormBuilder,
               private loginService:LoginService,
-              private route: Router) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -27,8 +28,19 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     // console.log(this.loginFormGroup.get('admin').value.userName);
     // console.log(this.loginFormGroup.get('admin').value.password);
-    this.loginService.login(this.loginFormGroup.get('admin').value.userName,
-                            this.loginFormGroup.get('admin').value.password);
-    this.route.navigateByUrl('students');
+    const result = this.loginService.login(this.loginFormGroup.get('admin').value.userName,
+                                            this.loginFormGroup.get('admin').value.password);
+    if(result == true){
+      this.router.navigateByUrl('students')
+    }else{
+      this.invalidMessage='Invalid Username And Password';
+      this.showMessage();
+    }
+
+  }
+  showMessage(){
+    setTimeout(() => {
+      this.invalidMessage=""
+    }, 3000)
   }
 }

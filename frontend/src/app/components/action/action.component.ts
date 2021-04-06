@@ -19,9 +19,15 @@ export class ActionComponent implements OnInit {
 
   ngOnInit(): void {
     this.id =  +this.route.snapshot.paramMap.get('id');
-    if(this.id !=0){
+    if(this.id != 0){
       this.studentService.getStudentByid(this.id).subscribe(
-        response => this.student = response
+        response => {
+          this.student = response,
+        this.studentGroup.get("student.fullName").patchValue(response.fullName),
+        this.studentGroup.get("student.age").patchValue(response.age),
+        this.studentGroup.get("student.address").patchValue(response.address),
+        this.studentGroup.get("student.phone").patchValue(response.phone),
+        this.studentGroup.get("student.gender").patchValue(response.gender)}
       )
     }
     this.studentGroup = this.formBuilder.group({
@@ -61,14 +67,14 @@ export class ActionComponent implements OnInit {
     if(this.id == 0){ //Save
       this.studentService.addStudent(stu).subscribe(
         response => {
-          this.router.navigateByUrl('/students')
+          this.router.navigateByUrl('students')
         }
       )
     }else { // Update
-      console.log('updated' +this.getFullName());
+      console.log('updated ' +this.id);
       this.studentService.editStudent(stu,this.id).subscribe(
         response => {
-          this.router.navigateByUrl('/students');
+          this.router.navigateByUrl('students')
         }
       )
     }

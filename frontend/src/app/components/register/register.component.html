@@ -1,5 +1,6 @@
-<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
 
+<form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+  <div *ngIf="invalidMessage" class="alert alert-danger">{{ invalidMessage }}</div>
   <div formGroupName="admin">
     <div class="input-group flex-nowrap ipu">
       <div class="input-group-prepend">
