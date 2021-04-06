@@ -37,7 +37,7 @@ export class ActionComponent implements OnInit {
         age: [''],
         address: [''],
         phone: [''],
-        gender: ['']
+        gender: ['MALE']
       })
     })
   }
@@ -59,6 +59,8 @@ export class ActionComponent implements OnInit {
   }
 
   save() {
+    // alert(this.getFullName());
+    // alert(this.getAge());
     // console.log(`FullName: `+this.getFullName());
     // console.log(`Age `+this.getAge());
     // console.log(`Address `+this.getAddress());
