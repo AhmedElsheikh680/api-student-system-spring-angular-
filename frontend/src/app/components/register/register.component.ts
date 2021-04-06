@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
 
@@ -19,23 +19,34 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
       admin: this.formBuilder.group({
-        userName: [''],
-        password:  ['']
+        userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
+        password: new FormControl('', [Validators.required, Validators.minLength(5)])
       })
     })
   }
 
+  get userName(){
+    return this.loginFormGroup.get('admin.userName');
+  }
+  get password(){
+    return this.loginFormGroup.get('admin.password');
+  }
   onSubmit() {
-    // console.log(this.loginFormGroup.get('admin').value.userName);
-    // console.log(this.loginFormGroup.get('admin').value.password);
-    const result = this.loginService.login(this.loginFormGroup.get('admin').value.userName,
-                                            this.loginFormGroup.get('admin').value.password);
-    if(result == true){
-      this.router.navigateByUrl('students')
+    if(this.loginFormGroup.invalid){
+      this.loginFormGroup.markAllAsTouched();
     }else{
-      this.invalidMessage='Invalid Username And Password';
-      this.showMessage();
+      // console.log(this.loginFormGroup.get('admin').value.userName);
+      // console.log(this.loginFormGroup.get('admin').value.password);
+      const result = this.loginService.login(this.loginFormGroup.get('admin').value.userName,
+        this.loginFormGroup.get('admin').value.password);
+      if(result == true){
+        this.router.navigateByUrl('students')
+      }else{
+        this.invalidMessage='Invalid Username And Password';
+        this.showMessage();
+      }
     }
+
 
   }
   showMessage(){
