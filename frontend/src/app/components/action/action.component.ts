@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Student} from '../../model/student';
 import {StudentService} from '../../services/student.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -33,10 +33,13 @@ export class ActionComponent implements OnInit {
     }
     this.studentGroup = this.formBuilder.group({
       student: this.formBuilder.group({
-        fullName: [''],
-        age: [''],
-        address: [''],
-        phone: [''],
+        fullName: new FormControl('',
+          [Validators.required, Validators.minLength(5)]),
+        age: new FormControl('',
+          [Validators.required, Validators.minLength(2), Validators.pattern("^[0-9]")]),
+        address: new FormControl('', [Validators.required]),
+        phone: new FormControl('', [Validators.required,
+          Validators.minLength(11), Validators.pattern("^[0-9]")]),
         gender: ['MALE']
       })
     })
