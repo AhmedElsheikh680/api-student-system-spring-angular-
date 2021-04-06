@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
+import {SpaceValidator} from '../../model/space-validator';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +20,10 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
       admin: this.formBuilder.group({
-        userName: new FormControl('', [Validators.required, Validators.minLength(5)]),
-        password: new FormControl('', [Validators.required, Validators.minLength(5)])
+        userName: new FormControl('', [Validators.required,
+                      Validators.minLength(5), SpaceValidator.noOnlyWithSpace]),
+        password: new FormControl('', [Validators.required,
+          Validators.minLength(5), SpaceValidator.noOnlyWithSpace])
       })
     })
   }

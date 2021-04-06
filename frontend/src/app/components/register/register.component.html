@@ -8,8 +8,12 @@
       <input  formControlName="userName" type="text" class="form-control"
               placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
       <div *ngIf="userName.invalid && (userName.touched || userName.dirty)">
-        <div *ngIf="userName.errors.required" class="alert alert-danger">User Name Is Required</div>
-        <div *ngIf="userName.errors.minlength" class="alert alert-danger">User Name Must Be At Least 5 Digits</div>
+        <div *ngIf="userName.errors.required || userName.errors.noOnlyWithSpace" class="alert alert-danger">
+          User Name Is Required
+        </div>
+        <div *ngIf="!userName.errors.noOnlyWithSpace && userName.errors.minlength" class="alert alert-danger">
+          User Name Must Be At Least 5 Digits
+        </div>
       </div>
     </div>
 
