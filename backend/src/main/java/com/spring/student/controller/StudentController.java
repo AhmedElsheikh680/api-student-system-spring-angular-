@@ -45,6 +45,7 @@ public class StudentController {
     @PutMapping("/students")
     public Student updateStudent(@RequestBody Student student, @RequestParam Long id){
         student.setId(id);
+        System.out.println("ID "+id);
         return studentService.updateStudent(student);
     }
 
@@ -52,5 +53,11 @@ public class StudentController {
     @DeleteMapping("/students")
     public void deleteStudent(@RequestParam Long id){
         studentService.deleteStudent(id);
+    }
+
+    //http://localhost:8080/api/v1/students/searchName?fullName=Ahmed Elsheikh
+    @GetMapping("/students/searchName")
+    public List<Student> findAllByFullName(@RequestParam String fullName){
+        return studentService.findAllByFullName(fullName);
     }
 }
