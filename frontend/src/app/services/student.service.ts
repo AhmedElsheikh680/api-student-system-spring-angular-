@@ -14,8 +14,8 @@ export class StudentService {
 
   constructor(private httpClient: HttpClient) { }
 
-    getStudents(): Observable<Student[]>{
-      return this.httpClient.get<Student[]>(this.urlStudents).pipe(
+    getStudents(page, size): Observable<Student[]>{
+      return this.httpClient.get<Student[]>(this.urlStudents+`?page=${page}&size=${size}`).pipe(
         map(
           response => response
         )

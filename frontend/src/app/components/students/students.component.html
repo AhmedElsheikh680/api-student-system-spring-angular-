@@ -12,7 +12,7 @@
 
   </tr>
   </thead>
-  <tbody *ngIf="students.length !=0">
+  <tbody *ngIf="students.length != 0">
   <tr *ngFor="let temStudent of students">
 <!--    <th scope="row">1</th>-->
 <!--    <td>{{ temStudent.id}}</td>-->
@@ -28,7 +28,7 @@
   </tr>
   </tbody>
 </table>
-<diV  *ngIf="students?.length ==0" class="alert alert-danger">
+<diV  *ngIf="students?.length == 0" class="alert alert-danger">
   No Data
 </diV>
 <button routerLink="/control" class="btn btn-primary">Add</button>

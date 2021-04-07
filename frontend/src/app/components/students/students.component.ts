@@ -10,8 +10,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class StudentsComponent implements OnInit {
 
-  students: Student[];
+  students: Student[]=[];
   message:string;
+  page: number =1;
+  size: number=5;
   constructor(private studentService: StudentService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class StudentsComponent implements OnInit {
     )
   }
   getStudents(){
-    this.studentService.getStudents().subscribe(
+    this.studentService.getStudents(this.page, this.size).subscribe(
       data => this.students = data
     )
   }
