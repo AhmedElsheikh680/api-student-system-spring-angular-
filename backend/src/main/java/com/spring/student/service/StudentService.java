@@ -45,4 +45,8 @@ public class StudentService {
     public Long getStudentLength(){
         return studentRepo.getStudentLength();
     }
+
+    public int getStudentLengthByName(String name){
+        return this.studentRepo.findByFullNameContaining(name).size();
+    }
 }

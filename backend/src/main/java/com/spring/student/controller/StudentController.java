@@ -68,4 +68,9 @@ public class StudentController {
     public Long getStudentsLength(){
         return studentService.getStudentLength();
     }
+
+    @GetMapping("/students/lengthName")
+    public int getStudentLengthByName(@RequestParam  String name){
+        return studentService.getStudentLengthByName(name);
+    }
 }
