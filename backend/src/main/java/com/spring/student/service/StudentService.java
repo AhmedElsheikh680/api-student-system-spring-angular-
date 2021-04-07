@@ -34,6 +34,6 @@ public class StudentService {
     }
 
     public List<Student> findAllByFullName(String fullName){
-        return studentRepo.findAllByFullName(fullName);
+        return studentRepo.findByFullNameContaining(fullName);
     }
 }
