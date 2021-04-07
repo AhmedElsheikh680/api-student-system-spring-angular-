@@ -15,14 +15,15 @@ export class StudentsComponent implements OnInit {
   page: number =1;
   size: number=5;
   numElements: number;
+  fullName:string="";
   constructor(private studentService: StudentService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       const resultName = this.route.snapshot.paramMap.has("name");
       if(resultName == true){
-        const name = this.route.snapshot.paramMap.get("name");
-        this.getStudentByName(name);
+       this.fullName = this.route.snapshot.paramMap.get("name");
+        this.getStudentByName();
       }else{
         this.getStudents()
 
@@ -30,9 +31,12 @@ export class StudentsComponent implements OnInit {
     })
 
   }
-  getStudentByName(name:string){
-    this.studentService.getStudentByName(name).subscribe(
-      data =>this.students = data
+  getStudentByName(){
+    this.studentService.getStudentByName(this.fullName,this.page -1, this.size).subscribe(
+      data => {
+        this.students = data,
+          this.numElements = data.length
+      }
     )
   }
   getStudents(){
@@ -71,5 +75,6 @@ export class StudentsComponent implements OnInit {
 
   change() {
     this.getStudents();
+    this.getStudentByName();
   }
 }

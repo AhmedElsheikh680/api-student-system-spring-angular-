@@ -64,8 +64,9 @@ export class StudentService {
     return this.httpClient.put(this.urlStudents + `?id=${id}` ,student);
   }
 
-  getStudentByName(name: string):Observable<Student[]>{
-    return this.httpClient.get<Student[]>(this.urlStudents+`/searchName?fullName=${name}`).pipe(
+  getStudentByName(name: string, page:number, size:number):Observable<Student[]>{
+    return this.httpClient.
+      get<Student[]>(this.urlStudents+`/searchName?fullName=${name}&page=${page}&size=${size}`).pipe(
       map(
         response =>response
       )
