@@ -3,6 +3,9 @@ package com.spring.student.service;
 import com.spring.student.model.Student;
 import com.spring.student.repo.StudentRepo;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +16,9 @@ public class StudentService {
     
     private final StudentRepo studentRepo;
 
-    public List<Student> getAllStudents(){
-        return studentRepo.findAll();
+    public List<Student> getAllStudents(int page, int size){
+        Pageable pageable = PageRequest.of(page, size);
+        return studentRepo.findAll(pageable).getContent();
     }
 
     public Student getStudentById(Long id){
