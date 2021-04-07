@@ -12,7 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouteActivatedService} from './services/route-activated.service';
 import {ReactiveFormsModule} from '@angular/forms';
 import { ContentComponent } from './components/content/content.component';
-
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'content', component:ContentComponent},
@@ -37,7 +37,8 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

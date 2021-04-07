@@ -13,7 +13,8 @@ export class StudentsComponent implements OnInit {
   students: Student[]=[];
   message:string;
   page: number =1;
-  size: number=5;
+  size: number=2;
+  numElements: number=10
   constructor(private studentService: StudentService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -35,7 +36,7 @@ export class StudentsComponent implements OnInit {
     )
   }
   getStudents(){
-    this.studentService.getStudents(this.page, this.size).subscribe(
+    this.studentService.getStudents(this.page-1, this.size).subscribe(
       data => this.students = data
     )
   }
@@ -59,23 +60,7 @@ export class StudentsComponent implements OnInit {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  change() {
+    this.getStudents();
+  }
 }
