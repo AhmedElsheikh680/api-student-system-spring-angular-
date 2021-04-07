@@ -13,8 +13,8 @@ export class StudentsComponent implements OnInit {
   students: Student[]=[];
   message:string;
   page: number =1;
-  size: number=2;
-  numElements: number=10
+  size: number=5;
+  numElements: number;
   constructor(private studentService: StudentService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -36,11 +36,20 @@ export class StudentsComponent implements OnInit {
     )
   }
   getStudents(){
-    this.studentService.getStudents(this.page-1, this.size).subscribe(
-      data => this.students = data
-    )
-  }
+    this.studentService.getStudents(this.page - 1, this.size).subscribe(
+      data =>{
+        this.students = data,
+        this.getStudentElements()
+      }
 
+    );
+
+  }
+  getStudentElements(){
+    return this.studentService.getStudentSize().subscribe(
+      data  => this.numElements = data
+    );
+  }
   deleteStudent(id: number){
     const index = this.students.findIndex(student => student.id == id);
     this.studentService.deleteStudent(id).subscribe(

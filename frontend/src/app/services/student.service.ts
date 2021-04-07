@@ -30,6 +30,13 @@ export class StudentService {
   //   )
   // }
 
+  getStudentSize(): Observable<number>{
+    return this.httpClient.get<number>(this.urlStudents+`/length`).pipe(
+      map(
+        response =>response
+      )
+    )
+  }
   deleteStudent(id: number){
     //this.httpClient.delete(this.urlStudents + `?id=`+id);
     return this.httpClient.delete(this.urlStudents+ `?id=${id}`);
