@@ -70,7 +70,7 @@ public class StudentController {
     }
 
     @GetMapping("/students/lengthName")
-    public int getStudentLengthByName(@RequestParam  String name){
+    public Long getStudentLengthByName(@RequestParam  String name){
         return studentService.getStudentLengthByName(name);
     }
 }
