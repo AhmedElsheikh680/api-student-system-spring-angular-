@@ -35,7 +35,7 @@ export class StudentsComponent implements OnInit {
     this.studentService.getStudentByName(this.fullName,this.page -1, this.size).subscribe(
       data => {
         this.students = data,
-          this.numElements = data.length
+          this.getStudentElementsByName()
       }
     )
   }
@@ -53,6 +53,11 @@ export class StudentsComponent implements OnInit {
     return this.studentService.getStudentSize().subscribe(
       data  => this.numElements = data
     );
+  }
+  getStudentElementsByName(){
+    return this.studentService.getStudentSizeByName(this.fullName).subscribe(
+      data => this.numElements = data
+    )
   }
   deleteStudent(id: number){
     const index = this.students.findIndex(student => student.id == id);
@@ -74,7 +79,13 @@ export class StudentsComponent implements OnInit {
 
 
   change() {
-    this.getStudents();
-    this.getStudentByName();
+    const resultName = this.route.snapshot.paramMap.has("name");
+    if(resultName == true){
+
+      this.getStudentByName();
+    }else{
+      this.getStudents()
+
+    }
   }
 }

@@ -73,7 +73,13 @@ export class StudentService {
     )
   }
 
-
+  getStudentSizeByName(name:string):Observable<number>{
+    return this.httpClient.get<number>(this.urlStudents+`/lengthName?name=${name}`).pipe(
+      map(
+        response => response
+      )
+    )
+  }
 
 }
 
