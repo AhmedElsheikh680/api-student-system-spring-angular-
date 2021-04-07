@@ -58,7 +58,14 @@ public class StudentController {
 
     //http://localhost:8080/api/v1/students/searchName?fullName=Ahmed Elsheikh
     @GetMapping("/students/searchName")
-    public List<Student> findAllByFullName(@RequestParam String fullName){
-        return studentService.findAllByFullName(fullName);
+    public List<Student> findAllByFullName(@RequestParam String fullName, @RequestParam int page, @RequestParam int size){
+        return studentService.findAllByFullName(fullName,page,size);
+    }
+
+
+    //http://localhost:8080/api/v1/students/length
+    @GetMapping("/students/length")
+    public Long getStudentsLength(){
+        return studentService.getStudentLength();
     }
 }
