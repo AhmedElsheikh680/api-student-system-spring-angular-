@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {LoginService} from '../../services/login.service';
 import {Router} from '@angular/router';
 import {SpaceValidator} from '../../model/space-validator';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   invalidMessage:string;
   constructor(private formBuilder: FormBuilder,
               private loginService:LoginService,
-              private router: Router) { }
+              private router: Router,
+              private authentication: AuthenticationService) { }
 
   ngOnInit(): void {
     this.loginFormGroup = this.formBuilder.group({
@@ -34,20 +36,33 @@ export class RegisterComponent implements OnInit {
   get password(){
     return this.loginFormGroup.get('admin.password');
   }
+
   onSubmit() {
     if(this.loginFormGroup.invalid){
       this.loginFormGroup.markAllAsTouched();
     }else{
       // console.log(this.loginFormGroup.get('admin').value.userName);
       // console.log(this.loginFormGroup.get('admin').value.password);
-      const result = this.loginService.login(this.loginFormGroup.get('admin').value.userName,
-        this.loginFormGroup.get('admin').value.password);
-      if(result == true){
-        this.router.navigateByUrl('students')
-      }else{
-        this.invalidMessage='Invalid Username And Password';
-        this.showMessage();
-      }
+
+      // const result = this.loginService.login(this.loginFormGroup.get('admin').value.userName,
+      //   this.loginFormGroup.get('admin').value.password);
+      // if(result == true){
+      //   this.router.navigateByUrl('students')
+      // }else{
+      //   this.invalidMessage='Invalid Username And Password';
+      //   this.showMessage();
+      // }
+
+      this.authentication.executeAuthentication(this.loginFormGroup.get('admin').value.userName,
+        this.loginFormGroup.get('admin').value.password).subscribe(
+                                                    data =>{
+                                                      console.log(data);
+                                                      this.router.navigateByUrl('students');
+                                                    },error => {
+                                                        this.invalidMessage='Invalid Username And Password';
+                                                        this.showMessage()
+        }
+      )
     }
 
 
