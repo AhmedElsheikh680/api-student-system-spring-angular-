@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {LoginService} from '../../services/login.service';
+
 import {Router} from '@angular/router';
 import {SpaceValidator} from '../../model/space-validator';
 import {AuthenticationService} from '../../services/authentication.service';
@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   loginFormGroup: FormGroup
   invalidMessage:string;
   constructor(private formBuilder: FormBuilder,
-              private loginService:LoginService,
+              // private loginService:LoginService,
               private router: Router,
               private authentication: AuthenticationService) { }
 

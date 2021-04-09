@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Student} from '../model/student';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {API_URL} from '../app.constant';
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import {map} from 'rxjs/operators';
 })
 export class StudentService {
 
-  private urlStudents = `http://localhost:8080/api/v1/students`;
+  private urlStudents = `${API_URL}/api/v1/students`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -54,7 +55,7 @@ export class StudentService {
   }
 
   getStudentByid(id: number):Observable<Student>{
-    return this.httpClient.get<Student>(`http://localhost:8080/api/v1/student?id=${id}`).pipe(
+    return this.httpClient.get<Student>(`${API_URL}/api/v1/student?id=${id}`).pipe(
       map(
         response => response
       )

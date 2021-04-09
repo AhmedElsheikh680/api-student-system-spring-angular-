@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
+import {API_URL, AUTHENTICATION, TOKEN} from '../app.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class AuthenticationService {
     let header = new HttpHeaders( {
       Authorization: basicAuthHeaderString
     })
-    return this.httpClient.get<AuthenticationBean>("http://localhost:8080/basicAuth", {headers: header}).pipe(
+    return this.httpClient.get<AuthenticationBean>(`${API_URL}/basicAuth`, {headers: header}).pipe(
       map(
         response => {
-          sessionStorage.setItem("isRegister",username);
-          sessionStorage.setItem('token', basicAuthHeaderString)
+          sessionStorage.setItem(`${AUTHENTICATION}`,username);
+          sessionStorage.setItem(`${TOKEN}`, basicAuthHeaderString)
           return response;
         }
       )
@@ -27,11 +28,19 @@ export class AuthenticationService {
   }
 
   getAuthentication(){
-    return sessionStorage.getItem("isRegister");
+    return sessionStorage.getItem(`${AUTHENTICATION}`);
   }
   getToken(){
     if(this.getAuthentication())
-    return sessionStorage.getItem("token");
+    return sessionStorage.getItem(`${TOKEN}`);
+  }
+  isLogin(){
+    return !(sessionStorage.getItem(`${AUTHENTICATION}`) == null);
+  }
+
+  logout(){
+    sessionStorage.removeItem(`${AUTHENTICATION}`);
+    sessionStorage.removeItem(`${TOKEN}`)
   }
 }
 
