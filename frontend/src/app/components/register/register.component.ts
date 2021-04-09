@@ -56,7 +56,7 @@ export class RegisterComponent implements OnInit {
       this.authentication.executeAuthentication(this.loginFormGroup.get('admin').value.userName,
         this.loginFormGroup.get('admin').value.password).subscribe(
                                                     data =>{
-                                                      console.log(data);
+                                                      console.log(data.message );
                                                       this.router.navigateByUrl('students');
                                                     },error => {
                                                         this.invalidMessage='Invalid Username And Password';
