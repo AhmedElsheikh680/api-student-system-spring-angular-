@@ -12,15 +12,24 @@ export class AuthenticationService {
   constructor(private httpClient: HttpClient) { }
 
   executeAuthentication(username, password) {
-    let basicAuthHeaderString = `Basic `+ window.btoa(username + `:` + password);
-    let header = new HttpHeaders( {
-      Authorization: basicAuthHeaderString
-    })
-    return this.httpClient.get<AuthenticationBean>(`${API_URL}/basicAuth`, {headers: header}).pipe(
+    // let basicAuthHeaderString = `Basic `+ window.btoa(username + `:` + password);
+    // let header = new HttpHeaders( {
+    //   Authorization: basicAuthHeaderString
+    // })
+    // return this.httpClient.get<AuthenticationBean>(`${API_URL}/basicAuth`, {headers: header}).pipe(
+    //   map(
+    //     response => {
+    //       sessionStorage.setItem(`${AUTHENTICATION}`,username);
+    //       sessionStorage.setItem(`${TOKEN}`, basicAuthHeaderString)
+    //       return response;
+    //     }
+    //   )
+    // )
+    return this.httpClient.post<any>(`${API_URL}/signin`, {username, password}).pipe(
       map(
         response => {
-          sessionStorage.setItem(`${AUTHENTICATION}`,username);
-          sessionStorage.setItem(`${TOKEN}`, basicAuthHeaderString)
+          sessionStorage.setItem(`${AUTHENTICATION}`, username);
+          sessionStorage.setItem(`${TOKEN}`,`Bearer ${response.token}`)
           return response;
         }
       )
