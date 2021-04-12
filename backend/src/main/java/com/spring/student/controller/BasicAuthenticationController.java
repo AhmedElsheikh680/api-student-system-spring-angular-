@@ -18,5 +18,4 @@ public class BasicAuthenticationController {
     public String main(){
         return "Yes Yes";
     }
-
 }
